@@ -1,11 +1,29 @@
-// Mimicking require. This isn't the actual require being used.
-// Scroll down below the data array to see what the custom require does.
-// var data;
+// MIMICKING REQUIRE. THIS ISN'T THE ACTUAL REQUIRE BEING USED.
 var wordsDB = _require(hoistData);
 
-
 // test randomly pulling a word from the pseudo-DB
-console.log(wordsDB[Math.floor(Math.random())]);
+// console.log(wordsDB[Math.floor(Math.random())]);
+
+// This can be useful later for hard mode.
+// Sort wordsDB in descending order in terms of length
+// feed hard mode players questions in that manner.
+
+// find the largest word.length and biggest word.
+let max = 0;
+let biggestWord = null;
+
+// Find and save the biggest word
+wordsDB.forEach((e) => {
+  if(e.length > max) {
+    max = e.length;
+    biggestWord = e;
+  }
+  // console.log(` Current: ${e.length}`, ` Max: ${max}`, `Biggest: ${biggestWord}`);
+})
+// console.log(`Biggest word: ${biggestWord}`);
+
+
+
 
 
 
