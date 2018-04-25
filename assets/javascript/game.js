@@ -1,4 +1,6 @@
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // MIMICKING REQUIRE. THIS ISN'T THE ACTUAL REQUIRE BEING USED.
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 var wordsDB = _require(hoistData);
 
 // test randomly pulling a word from the pseudo-DB
