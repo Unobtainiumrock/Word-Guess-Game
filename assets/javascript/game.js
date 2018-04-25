@@ -6,7 +6,7 @@ var wordsDB = _require(hoistData);
 // test randomly pulling a word from the pseudo-DB
 // console.log(wordsDB[Math.floor(Math.random())]);
 
-// This can be useful later for hard mode.
+// This can be useful later for hard mode.  
 // Sort wordsDB in descending order in terms of length
 // feed hard mode players questions in that manner.
 
@@ -26,6 +26,11 @@ wordsDB.forEach((e) => {
 
 
 
+$(document).ready(function() {
+  $('#wins').click(function(e) {
+    console.log(this);
+  })
+});
 
 
 
