@@ -10,8 +10,8 @@
   <title>Hangman</title>
 </head>
   <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-main" href="#" style="font-weight: bold">Press any key to get started!</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,10 +24,10 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">High Scores</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
               Dropdown
@@ -39,9 +39,6 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
         </ul>
       </div>
     </nav>
@@ -52,9 +49,9 @@
   <div class="container">
     <div class="row">
 
-      <!-- Main left area -->
-      <div class="col-md-3" id="main-left">
-        <h1>Scoreboard</h1>
+<!-- Main left area -->
+      <div class="col-md-3 border-right" id="main-left">
+        <h1 class="text-center">Scoreboard</h1>
 
         <!-- Wins container -->
         <div class="container">
@@ -77,12 +74,12 @@
         
       </div>
 
-      <!-- Main middle area -->
-      <div class="col-md-5" id="main-middle">
-        <h1>Countdown</h1>
-      </div>
+<!-- Main middle area -->
+        <div class="col-md-5 border-right" id="main-middle">
+          <h1 class="text-center">Countdown</h1>
+        </div>
 
-      <!-- Main right area -->
+<!-- Main right area -->
       <div class="col-md-4" id="main-right">
         <div class="row">
           
