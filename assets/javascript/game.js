@@ -28,12 +28,12 @@ $(document).ready(function() {
    * Initializes game state
    */
   let initialState = new Map();
-  let outsideKeyup = 5;
+
   /**
    * Sets up the state of the game
    */
   setState();
-
+  console.log(initialState.get('secretWord'));
   // console.log(initialState.get('secretWord'));
 
   // Event handlers =========================================================================================
@@ -48,18 +48,19 @@ $(document).ready(function() {
     // console.log(`Before reset: ${initialState.get('secretWord')}`);
     if(90 >= e.keyCode && 65 <= e.keyCode){
       // console.log(e.key);
+      $('#lives').text(ltr);
     } else {
         if(e.keyCode === 32) {
-          // console.log('RESET EVERYTHING');
+          console.log('RESET EVERYTHING');
           reset();
-          console.log(initialState);
+          console.log(initialState.get('secretWord'));
           // console.log(`After reset: ${initialState.get('secretWord')}`);
         } else {
           alert("Sorry! That character isn't allowed. Please provide letter values a-z");
         }
     }
 
-    $('#lives').text(ltr);
+    // $('#lives').text(ltr);
 
   });
   // End event handlers ====================================================================================
