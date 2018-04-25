@@ -28,7 +28,7 @@ $(document).ready(function() {
    * Initializes game state
    */
   let initialState = new Map();
-  
+  let outsideKeyup = 5;
   /**
    * Sets up the state of the game
    */
@@ -36,25 +36,30 @@ $(document).ready(function() {
 
   console.log(initialState);
 
-  // Event handlers ===========================================================================================================
+  // Event handlers =========================================================================================
   /**
    * @param  {DOM} document
    */
   $(document).keyup(function(e) {
     let ltr = `${e.key}`.toLowerCase();
-
+    console.log(`Inside keyup: ${initialState}`);
+    console.log(`Outside keyup: ${outsideKeyup}`);
     // console.log(`Final eval is: ${ 90 >= e.keyCode && 65 <= e.keyCode }`);
-
+    // console.log(`Before reset: ${initialState.get('secretword')}`);
     if(90 >= e.keyCode && 65 <= e.keyCode){
-      console.log(e.key);
+      // console.log(e.key);
     } else {
         if(e.keyCode === 32) {
-          setState();
-          console.log(initialState);
+          // console.log('RESET EVERYTHING');
+          reset();
+          // console.log(initialState);
+          // console.log(`After reset: ${initialState.get('secretword')}`);
         } else {
           alert("Sorry! That character isn't allowed. Please provide letter values a-z");
         }
     }
+
+    $('#lives').text(ltr);
 
   });
   // End event handlers ====================================================================================
@@ -99,7 +104,7 @@ $(document).ready(function() {
 
 
 // Hoisted stuff below this section is for mimicking import
-// ==============================================================================================================================================================================================================================
+// ===========================================================================================================
 /**
  * @param  {function} hoistData
  */
