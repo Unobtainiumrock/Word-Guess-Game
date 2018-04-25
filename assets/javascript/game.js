@@ -24,28 +24,15 @@ wordsDB.forEach((e) => {
 
 
 $(document).ready(function() {
+  /**
+   * Initializes game state
+   */
   let initialState = new Map();
-
-
-  // FIDDLING WITH MAPS TO GUARANTEE ORDER IN MY OBJECT
-  // IT BUGS OUT BECAUSE THE EMPTY PROPERTY COMES BEFORE THE SECRETWORD PROPERTY
-  initialState.set('secretWord',grabSecretWord());
-  initialState.set('empty',createEmpty(initialState.get('secretWord')));
-  initialState.set('wins', 0);
-  initialState.set('lives', 9);
-  initialState.set('countdown', 20);
-  initialState.set('difficulty', 'easy');
-
-  // initialState.set(empty,createEmpty()
-  // Declare default game state
-  // let initialState = {
-  //   secretWord: grabSecretWord(),
-  //   // empty: createEmpty(this.secretWord),
-  //   wins: 0,
-  //   lives: 9,
-  //   countdown: 20,
-  //   difficulty: 'easy'
-  // }
+  
+  /**
+   * Sets up the state of the game
+   */
+  setState();
 
   console.log(initialState);
 
@@ -61,7 +48,11 @@ $(document).ready(function() {
     if(90 >= e.keyCode && 65 <= e.keyCode){
       console.log(e.key);
     } else {
-      alert("Sorry! That character isn't allowed. Please provide letter values a-z")
+        if('spacebar') {
+          reset();
+        } else {
+          alert("Sorry! That character isn't allowed. Please provide letter values a-z");
+        }
     }
     
     $("#wins").text(ltr)
@@ -96,9 +87,22 @@ $(document).ready(function() {
     });
   }
 
-  function reset() {
-    grabSecretWord();
+  function check() {
 
+  }
+
+  function reset() {
+
+
+  }
+
+  function setState() {
+    initialState.set('secretWord',grabSecretWord());
+    initialState.set('empty',createEmpty(initialState.get('secretWord')));
+    initialState.set('wins', 0);
+    initialState.set('lives', 9);
+    initialState.set('countdown', 20);
+    initialState.set('difficulty', 'easy');
   }
 
 });
