@@ -40,6 +40,10 @@ $(document).ready(function() {
     console.log(this);
   })
 
+  $(document).keyup(function(e) {
+    console.log(JSON.stringify(e.key));
+  })
+
 });
 
 
