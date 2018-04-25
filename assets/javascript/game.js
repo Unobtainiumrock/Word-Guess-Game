@@ -27,9 +27,19 @@ wordsDB.forEach((e) => {
 
 
 $(document).ready(function() {
+
   $('#wins').click(function(e) {
     console.log(this);
   })
+
+  $('#guesses-remaining').click(function(e) {
+    console.log(this);
+  })
+
+  $('#countdown').click(function(e) {
+    console.log(this);
+  })
+
 });
 
 
