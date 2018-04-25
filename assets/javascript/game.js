@@ -24,7 +24,11 @@ wordsDB.forEach((e) => {
 
 
 $(document).ready(function() {
-  let secretWord, wins, lives, countdown;
+
+  // Initialize game settings
+  let secretWord, wins, lives, countdown,
+      difficulty, session;
+
   
   grabSecretWord();
 
@@ -55,7 +59,7 @@ $(document).ready(function() {
   //   console.log(this);
   // })
 
-  // Helpers
+
   function grabSecretWord() {
     secretWord = wordsDB[Math.floor(Math.random() * wordsDB.length)];
     console.log(secretWord);
@@ -72,6 +76,9 @@ $(document).ready(function() {
 
 // Hoisted stuff below this section is for mimicking import
 // ==============================================================================================================================================================================================================================
+/**
+ * @param  {function} hoistData
+ */
 function _require(cb) {
   return cb();
 }
