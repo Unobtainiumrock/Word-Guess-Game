@@ -1,5 +1,5 @@
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// MIMICKING REQUIRE. THIS ISN'T THE ACTUAL REQUIRE BEING USED.
+// MIMICKING REQUIRE. THIS ISN'T THE ACTUAL NODE REQUIRE BEING USED.
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 var wordsDB = _require(hoistData);
 
@@ -24,28 +24,52 @@ wordsDB.forEach((e) => {
 
 
 $(document).ready(function() {
+  let initialState = new Map();
 
-  // Initialize game settings
-  let secretWord, wins, lives, countdown,
-      difficulty, session;
 
+  // FIDDLING WITH MAPS TO GUARANTEE ORDER IN MY OBJECT
+  // IT BUGS OUT BECAUSE THE EMPTY PROPERTY COMES BEFORE THE SECRETWORD PROPERTY
+  initialState.set('secretWord',grabSecretWord());
+  initialState.set('empty',grabSecretWord(initialState.get('secretWord')));
   
-  grabSecretWord();
+  // initialState.set(empty,createEmpty()
+  // Declare default game state
+  // let initialState = {
+  //   secretWord: grabSecretWord(),
+  //   // empty: createEmpty(this.secretWord),
+  //   wins: 0,
+  //   lives: 9,
+  //   countdown: 20,
+  //   difficulty: 'easy'
+  // }
+
+  console.log(initialState.get('secretWord').length);
+  console.log(initialState.get('empty').length);
 
 
 // Event Handlers
 
   // Main event handlers
   $(document).keyup(function(e) {
-    let val = JSON.stringify(`${e.key}`.toLowerCase());
+    let ltr = `${e.key}`.toLowerCase();
+    // console.log(`${90 >= e.keyCode}: 90 <= ${e.keyCode} `);
+    // console.log(`${65 <= e.keyCode}: 90 >= ${e.keyCode} `);
+    // console.log(`Final eval is: ${ 90 >= e.keyCode && 65 <= e.keyCode }`);
 
-    $("#wins").text(val)
+    if(90 >= e.keyCode && 65 <= e.keyCode){
+      console.log(e.key);
+    } else {
+      alert("Sorry! That character isn't allowed. Please provide letter values a-z")
+    }
+    
+    $("#wins").text(ltr)
 
-    $("#guesses-remaining").text(val)
+    $("#guesses-remaining").text(ltr)
 
-    $("#countdown").text(val)
+    $("#countdown").text(ltr)
 
   });
+
   // Tests 
   // $('#wins').click(function(e) {
   //   console.log(this);
@@ -59,10 +83,15 @@ $(document).ready(function() {
   //   console.log(this);
   // })
 
-
+  //Helper functions 
   function grabSecretWord() {
-    secretWord = wordsDB[Math.floor(Math.random() * wordsDB.length)];
-    console.log(secretWord);
+    return wordsDB[Math.floor(Math.random() * wordsDB.length)].split('');
+  }
+  
+  function createEmpty(arr) {
+    return arr.map((e) => {
+      return '_';
+    });
   }
 
   function reset() {
