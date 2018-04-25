@@ -30,8 +30,12 @@ $(document).ready(function() {
   // FIDDLING WITH MAPS TO GUARANTEE ORDER IN MY OBJECT
   // IT BUGS OUT BECAUSE THE EMPTY PROPERTY COMES BEFORE THE SECRETWORD PROPERTY
   initialState.set('secretWord',grabSecretWord());
-  initialState.set('empty',grabSecretWord(initialState.get('secretWord')));
-  
+  initialState.set('empty',createEmpty(initialState.get('secretWord')));
+  initialState.set('wins', 0);
+  initialState.set('lives', 9);
+  initialState.set('countdown', 20);
+  initialState.set('difficulty', 'easy');
+
   // initialState.set(empty,createEmpty()
   // Declare default game state
   // let initialState = {
@@ -43,9 +47,7 @@ $(document).ready(function() {
   //   difficulty: 'easy'
   // }
 
-  console.log(initialState.get('secretWord').length);
-  console.log(initialState.get('empty').length);
-
+  console.log(initialState);
 
 // Event Handlers
 
