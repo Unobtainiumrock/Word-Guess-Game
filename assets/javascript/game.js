@@ -27,22 +27,42 @@ wordsDB.forEach((e) => {
 
 
 $(document).ready(function() {
+  let secretWord, wins, lives;
+  
+  grabSecretWord();
 
-  $('#wins').click(function(e) {
-    console.log(this);
-  })
 
-  $('#guesses-remaining').click(function(e) {
-    console.log(this);
-  })
+// Event Handlers
 
-  $('#countdown').click(function(e) {
-    console.log(this);
-  })
-
+  // Main event handlers
   $(document).keyup(function(e) {
-    console.log(JSON.stringify(e.key));
-  })
+    let val = JSON.stringify(`${e.key}`.toLowerCase());
+
+    $("#wins").text(val)
+
+    $("#guesses-remaining").text(val)
+
+    $("#countdown").text(val)
+
+  });
+  // Tests 
+  // $('#wins').click(function(e) {
+  //   console.log(this);
+  // })
+
+  // $('#guesses-remaining').click(function(e) {
+  //   console.log(this);
+  // })
+
+  // $('#countdown').click(function(e) {
+  //   console.log(this);
+  // })
+
+  // Helpers
+  function grabSecretWord() {
+    secretWord = wordsDB[Math.floor(Math.random() * wordsDB.length)];
+    console.log(secretWord);
+  }
 
 });
 
