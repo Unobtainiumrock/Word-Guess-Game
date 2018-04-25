@@ -34,7 +34,7 @@ $(document).ready(function() {
    */
   setState();
 
-  console.log(initialState);
+  // console.log(initialState.get('secretWord'));
 
   // Event handlers =========================================================================================
   /**
@@ -42,18 +42,18 @@ $(document).ready(function() {
    */
   $(document).keyup(function(e) {
     let ltr = `${e.key}`.toLowerCase();
-    console.log(`Inside keyup: ${initialState}`);
-    console.log(`Outside keyup: ${outsideKeyup}`);
+    // console.log(`Inside keyup: ${initialState}`);
+    // console.log(`Outside keyup: ${outsideKeyup}`);
     // console.log(`Final eval is: ${ 90 >= e.keyCode && 65 <= e.keyCode }`);
-    // console.log(`Before reset: ${initialState.get('secretword')}`);
+    // console.log(`Before reset: ${initialState.get('secretWord')}`);
     if(90 >= e.keyCode && 65 <= e.keyCode){
       // console.log(e.key);
     } else {
         if(e.keyCode === 32) {
           // console.log('RESET EVERYTHING');
           reset();
-          // console.log(initialState);
-          // console.log(`After reset: ${initialState.get('secretword')}`);
+          console.log(initialState);
+          // console.log(`After reset: ${initialState.get('secretWord')}`);
         } else {
           alert("Sorry! That character isn't allowed. Please provide letter values a-z");
         }
