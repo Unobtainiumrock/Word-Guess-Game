@@ -36,47 +36,30 @@ $(document).ready(function() {
 
   console.log(initialState);
 
-// Event Handlers
-
-  // Main event handlers
+  // Event handlers ===========================================================================================================
+  /**
+   * @param  {DOM} document
+   */
   $(document).keyup(function(e) {
     let ltr = `${e.key}`.toLowerCase();
-    // console.log(`${90 >= e.keyCode}: 90 <= ${e.keyCode} `);
-    // console.log(`${65 <= e.keyCode}: 90 >= ${e.keyCode} `);
+
     // console.log(`Final eval is: ${ 90 >= e.keyCode && 65 <= e.keyCode }`);
 
     if(90 >= e.keyCode && 65 <= e.keyCode){
       console.log(e.key);
     } else {
-        if('spacebar') {
-          reset();
+        if(e.keyCode === 32) {
+          setState();
+          console.log(initialState);
         } else {
           alert("Sorry! That character isn't allowed. Please provide letter values a-z");
         }
     }
-    
-    $("#wins").text(ltr)
-
-    $("#guesses-remaining").text(ltr)
-
-    $("#countdown").text(ltr)
 
   });
+  // End event handlers ====================================================================================
 
-  // Tests 
-  // $('#wins').click(function(e) {
-  //   console.log(this);
-  // })
-
-  // $('#guesses-remaining').click(function(e) {
-  //   console.log(this);
-  // })
-
-  // $('#countdown').click(function(e) {
-  //   console.log(this);
-  // })
-
-  //Helper functions 
+  //Helper functions =======================================================================================
   function grabSecretWord() {
     return wordsDB[Math.floor(Math.random() * wordsDB.length)].split('');
   }
@@ -92,8 +75,14 @@ $(document).ready(function() {
   }
 
   function reset() {
+    setState();
+    $("#wins").text(initialState.get('wins'));
 
+    $("#lives").text(initialState.get('lives'));
 
+    $("#countdown").text(initialState.get('countdown'));
+
+    // $("#difficulty").text(initialState.get('difficulty'));
   }
 
   function setState() {
@@ -106,7 +95,7 @@ $(document).ready(function() {
   }
 
 });
-
+  //End helper functions =====================================================================================
 
 
 // Hoisted stuff below this section is for mimicking import
