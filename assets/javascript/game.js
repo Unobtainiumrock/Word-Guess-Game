@@ -32,6 +32,8 @@ $(document).ready(function() {
    */
   setState();
   reset();
+  let editableEmpty = [...initialState.get('empty')].filter( e => e!== ' ');
+  console.log(editableEmpty);
   console.log(initialState.get('secretWord'));
   console.log(initialState.get('empty'));
 
@@ -41,14 +43,11 @@ $(document).ready(function() {
    */
   $(document).keyup(function(e) {
     let ltr = `${e.key}`.toLowerCase();
-    // console.log(`Inside keyup: ${initialState}`);
-    // console.log(`Outside keyup: ${outsideKeyup}`);
-    // console.log(`Final eval is: ${ 90 >= e.keyCode && 65 <= e.keyCode }`);
-    // console.log(`Before reset: ${initialState.get('secretWord')}`);
+
     if(90 >= e.keyCode && 65 <= e.keyCode){
-      // let hits = findAllIndexMatches(ltr,initialState.get('secretWord'));
-      // console.log(hits);
-      $('#empty').text(ltr);
+      // console.log(ltr);
+      findHitsAndUpdateEmpty(ltr,findAllIndexMatches,populateEmpty);
+      // console.log(initialState.get('secretWord') === );
     } else {
         if(e.keyCode === 32) {
           console.log('RESET EVERYTHING');
@@ -69,7 +68,8 @@ $(document).ready(function() {
   }
   
   /**
-   * @param  {} arr
+   * Creates a span of underscores equal in length to the secretWord
+   * @param  {Array} arr is the secretWord array
    */
   function createEmpty(arr) {
     return arr.map((e) => {
@@ -78,10 +78,23 @@ $(document).ready(function() {
   }
 
   /**
+   * @param  {string} ltr: is the letter key pressed by user
+   * @param  {function} matches: is the findAllIndexMatches callback
+   * @param  {function} populate: is the the populateEmpty callback
+   */
+  function findHitsAndUpdateEmpty(ltr,matches,populate) {
+    let matchesByIndex = matches(ltr,[...initialState.get('secretWord')]);
+    populate(ltr,matchesByIndex);
+  }
+  
+  // findHitsAndUpdateEmpty('a',findAllIndexMatches,populateEmpty);
+  
+  /**
+   * A callback used within findHitsAndUpdateEmpty
    * Takes a letter and an array and returns a list of indexes where
    * matches were found 
-   * @param  {string} ltr is the letter key pressed
-   * @param  {array} arr is the secredWord array
+   * @param  {string} ltr is the letter key pressed by user
+   * @param  {array} arr is the secretWord array
    * @returns {array} returns list of hits indexes
    */
   function findAllIndexMatches(ltr,arr) {
@@ -98,6 +111,20 @@ $(document).ready(function() {
     
     return trimmedIndexes;
   }
+
+  /**
+   * A callback used within findHitsAndUpdateEmpty.
+   * This portion handles populating _'s with the matching letter
+   * at the corresponding position
+   * @param  {string} ltr is the letter key pressed by user
+   * @param  {array} hits is the array of hits returned by findAllIndexMatches
+   */
+  function populateEmpty(ltr,hits) {
+      hits.forEach((e) => {
+        editableEmpty[e] = ltr;
+      });
+      $('#empty').text(editableEmpty.join(' '));
+    }
 
 
   /**
