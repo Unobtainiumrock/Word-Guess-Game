@@ -26,14 +26,14 @@ $(document).ready(function() {
    * Initializes game state
    */
   let initialState = new Map();
-
+  let editableEmpty;
   /**
-   * Sets up the state of the game
+   * Sets up the state of the game. 
    */
   setState();
   reset();
-  let editableEmpty = [...initialState.get('empty')].filter( e => e!== ' ');
-  console.log(editableEmpty);
+  // let editableEmpty = [...initialState.get('empty')].filter( e => e!== ' ');
+  // console.log(editableEmpty);
   console.log(initialState.get('secretWord'));
   console.log(initialState.get('empty'));
 
@@ -132,6 +132,8 @@ $(document).ready(function() {
    */
   function reset() {
     setState();
+
+    editableEmpty = [...initialState.get('empty')].filter( e => e!== ' ');
 
     $('#empty').text(initialState.get('empty'));
 
