@@ -1,39 +1,16 @@
 
 var wordsDB = _require(hoistData);
 
-
-// This can be useful later for hard mode.  
-// Sort wordsDB in descending order in terms of length
-// feed hard mode players questions in that manner.
-
-// find the largest word.length and biggest word.
-let max = 0;
-let biggestWord = null;
-
-// Find and save the biggest word
-wordsDB.forEach((e) => {
-  if(e.length > max) {
-    max = e.length;
-    biggestWord = e;
-  }
-})
-// console.log(`Biggest word: ${biggestWord}`);
-
-
-
 $(document).ready(function() {
   /**
-   * Initializes game state
+   * Initializes and sets up game state
    */
   let initialState = new Map();
   let editableEmpty;
-  /**
-   * Sets up the state of the game. 
-   */
+
   setState();
-  reset();
-  // let editableEmpty = [...initialState.get('empty')].filter( e => e!== ' ');
-  // console.log(editableEmpty);
+  reset(); /* <---- Lazy hack fix*/
+
   console.log(initialState.get('secretWord'));
   console.log(initialState.get('empty'));
 
@@ -87,8 +64,7 @@ $(document).ready(function() {
     populate(ltr,matchesByIndex);
   }
   
-  // findHitsAndUpdateEmpty('a',findAllIndexMatches,populateEmpty);
-  
+
   /**
    * A callback used within findHitsAndUpdateEmpty
    * Takes a letter and an array and returns a list of indexes where
