@@ -6,13 +6,22 @@ $(document).ready(function() {
    * Initializes and sets up game state
    */
   let initialState = new Map();
-  let editableEmpty;
 
+ 
+  /**
+   * continued
+   * can't put properties from Map to variables until after setState is called.
+   */
   setState();
+  let editableWins = initialState.get('wins');
+  let editableLives = initialState.get('lives');
+
+
+  //continued
+  // reset needs to have 'editableEmpty'
+  let editableEmpty;
   reset(); /* <---- Lazy hack fix*/
 
-  console.log(initialState.get('secretWord'));
-  console.log(initialState.get('empty'));
 
   // Event handlers =========================================================================================
   /**
@@ -22,9 +31,18 @@ $(document).ready(function() {
     let ltr = `${e.key}`.toLowerCase();
 
     if(90 >= e.keyCode && 65 <= e.keyCode){
-      // console.log(ltr);
-      findHitsAndUpdateEmpty(ltr,findAllIndexMatches,populateEmpty);
-      // console.log(initialState.get('secretWord') === );
+
+        findHitsAndUpdateEmpty(ltr,findAllIndexMatches,populateEmpty);
+        // console.log(`Editable: ${editableEmpty.join('')} Secret: ${initialState.get('secretWord').join('')}`);
+
+        if(editableEmpty.join('') === initialState.get('secretWord').join('')) {
+          console.log('Winner!');
+          editableWins++;
+          changeWord();
+        }
+
+
+
     } else {
         if(e.keyCode === 32) {
           console.log('RESET EVERYTHING');
@@ -40,6 +58,12 @@ $(document).ready(function() {
   // End event handlers ====================================================================================
 
   //Helper functions =======================================================================================
+
+
+  
+  /**
+   * Grabs a random word from our giant list of words
+   */
   function grabSecretWord() {
     return wordsDB[Math.floor(Math.random() * wordsDB.length)].split('');
   }
@@ -103,14 +127,29 @@ $(document).ready(function() {
     }
 
 
+
+
+
+  function changeWord() {
+    initialState.set('secretWord', grabSecretWord());
+    initialState.set('empty',createEmpty(initialState.get('secretWord')));
+    editableEmpty = [...initialState.get('empty')].filter( e => e!== ' ');
+    $('#empty').text(initialState.get('empty'));
+    $('#wins').text(editableWins);
+  }
+  
+
   /**
-   * Resets all the game data. Fires on spacebar presses
+   * Resets all the game data. Invoked on spacebar presses
    */
   function reset() {
     setState();
-
+    
+    // Makes an array from the initialState's 'empty' property and removes blank values
     editableEmpty = [...initialState.get('empty')].filter( e => e!== ' ');
+    // edia
 
+  // These should never be manipulated?
     $('#empty').text(initialState.get('empty'));
 
     $('#wins').text(initialState.get('wins'));
