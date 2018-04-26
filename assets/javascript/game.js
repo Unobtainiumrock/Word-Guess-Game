@@ -17,7 +17,6 @@ wordsDB.forEach((e) => {
     max = e.length;
     biggestWord = e;
   }
-  // console.log(` Current: ${e.length}`, ` Max: ${max}`, `Biggest: ${biggestWord}`);
 })
 // console.log(`Biggest word: ${biggestWord}`);
 
@@ -33,8 +32,9 @@ $(document).ready(function() {
    * Sets up the state of the game
    */
   setState();
+  // reset();
   console.log(initialState.get('secretWord'));
-  // console.log(initialState.get('secretWord'));
+  console.log(initialState.get('empty'));
 
   // Event handlers =========================================================================================
   /**
@@ -48,20 +48,22 @@ $(document).ready(function() {
     // console.log(`Before reset: ${initialState.get('secretWord')}`);
     if(90 >= e.keyCode && 65 <= e.keyCode){
       // console.log(e.key);
-      $('#lives').text(ltr);
+      // $('#lives').text(ltr);
+      // $('#difficulty').text(ltr);
+      // $('#wins').text(ltr);
+      // $('#countdown').text(ltr);
+      // $('#empty').text(ltr);
     } else {
         if(e.keyCode === 32) {
           console.log('RESET EVERYTHING');
           reset();
           console.log(initialState.get('secretWord'));
+          console.log(initialState.get('empty'));
           // console.log(`After reset: ${initialState.get('secretWord')}`);
         } else {
           alert("Sorry! That character isn't allowed. Please provide letter values a-z");
         }
     }
-
-    // $('#lives').text(ltr);
-
   });
   // End event handlers ====================================================================================
 
@@ -73,7 +75,7 @@ $(document).ready(function() {
   function createEmpty(arr) {
     return arr.map((e) => {
       return '_';
-    });
+    }).join(' ');
   }
 
   function check() {
@@ -82,13 +84,16 @@ $(document).ready(function() {
 
   function reset() {
     setState();
-    $("#wins").text(initialState.get('wins'));
 
-    $("#lives").text(initialState.get('lives'));
+    $('#empty').text(initialState.get('empty'));
 
-    $("#countdown").text(initialState.get('countdown'));
+    $('#wins').text(initialState.get('wins'));
 
-    // $("#difficulty").text(initialState.get('difficulty'));
+    $('#lives').text(initialState.get('lives'));
+
+    $('#countdown').text(initialState.get('countdown'));
+
+    $('#difficulty').text(initialState.get('difficulty'));
   }
 
   function setState() {
