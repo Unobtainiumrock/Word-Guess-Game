@@ -1,5 +1,6 @@
 
 $(document).ready(function() {
+  // $('#audio').html('<audio autoplay><source src="assets/images/song.mp4s"');
   /**
    * Initializes and sets up game state
    */
