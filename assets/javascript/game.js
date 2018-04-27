@@ -29,19 +29,23 @@ $(document).ready(function() {
    */
   $(document).keyup(function(e) {
     let ltr = `${e.key}`.toLowerCase();
+    let secret = initialState.get('secretWord').join('');
+    let userGuess = editableEmpty.join('');
 
     if(90 >= e.keyCode && 65 <= e.keyCode){
 
+      // self-explanatory by function name
         findHitsAndUpdateEmpty(ltr,findAllIndexMatches,populateEmpty);
-        // console.log(`Editable: ${editableEmpty.join('')} Secret: ${initialState.get('secretWord').join('')}`);
 
-        if(editableEmpty.join('') === initialState.get('secretWord').join('')) {
+        // Leave this uncommented for testing if my app behaves as it should
+        console.log(`Editable: ${editableEmpty.join('')} Secret: ${initialState.get('secretWord').join('')}`);
+
+        // Shorthanding these expression, by assigning them to variables, breaks the if statement
+        if(userGuess === secret) {
           console.log('Winner!');
           editableWins++;
           changeWord();
         }
-
-
 
     } else {
         if(e.keyCode === 32) {
@@ -55,7 +59,6 @@ $(document).ready(function() {
         }
     }
   });
-  // End event handlers ====================================================================================
 
   //Helper functions =======================================================================================
 
