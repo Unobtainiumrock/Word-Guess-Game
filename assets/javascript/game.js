@@ -1,5 +1,5 @@
 
-var wordsDB = _require(hoistData);
+// var wordsDB = _require(hoistData);
 
 $(document).ready(function() {
   /**
@@ -33,6 +33,7 @@ $(document).ready(function() {
     let userGuess = editableEmpty.join('');
 
     let validKeyStroke = (65 <= e.keyCode) && (90 >= e.keyCode);
+
     if(validKeyStroke){
 
       // self-explanatory by function name
@@ -55,6 +56,7 @@ $(document).ready(function() {
 
         if(editableLives === 0) {
           alert('Game Over Man!');
+          editableLives = 9;
           reset();
         }
 
@@ -142,8 +144,6 @@ $(document).ready(function() {
 
 
 
-
-
   function changeWord() {
     initialState.set('secretWord', grabSecretWord());
     initialState.set('empty',createEmpty(initialState.get('secretWord')));
@@ -189,6 +189,31 @@ $(document).ready(function() {
 
 });
   //End helper functions =====================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// DANGER! BORING ZONE DOWN HERE. I couldn't get this to work by linking the wordDB.js
+// to index.html above game.js
+
+
+
+
+
+
+
+
 
 
 // Hoisted stuff below this section is for mimicking import
