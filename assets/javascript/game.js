@@ -14,7 +14,7 @@ $(document).ready(function() {
   setState();
   let editableWins = initialState.get('wins');
   let editableLives = initialState.get('lives');
-
+  let editableLettersGuessed = initialState.get('guessed');
 
   //continued
   // reset needs to have 'editableEmpty'
@@ -48,15 +48,28 @@ $(document).ready(function() {
         }
 
         if(!secret.includes(ltr)) {
-          console.log('running');
-          editableLives--;
-          $('#lives').text(editableLives);
+
+          if(editableLettersGuessed && !editableLettersGuessed.includes(ltr)) {
+            editableLives--;
+            $('#lives').text(editableLives);
+          }
+          
+          if(!editableLettersGuessed.includes(ltr)) {
+            $('#words-guessed').append(ltr);
+            $('#words-guessed').append(' ');
+            editableLettersGuessed.push(ltr);
+          } else {
+            alert('You already guessed that letter!');
+          }
+
         }
 
         if(editableLives === 0) {
           alert('Game Over Man!');
-          editableLives = 9;
           reset();
+          editableLives = 9;
+          editableLettersGuessed = [];
+          $('#words-guessed').text('');
         }
 
     } else {
@@ -151,6 +164,7 @@ $(document).ready(function() {
     $('#wins').text(editableWins);
   }
   
+  // function ()
 
   /**
    * Resets all the game data. Invoked on spacebar presses
@@ -184,6 +198,7 @@ $(document).ready(function() {
     initialState.set('lives', 9);
     initialState.set('countdown', 20);
     initialState.set('difficulty', 'easy');
+    initialState.set('guessed', []);
   }
 
 });
