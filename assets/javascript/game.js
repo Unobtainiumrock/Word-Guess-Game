@@ -44,6 +44,7 @@ $(document).ready(function() {
         if(userGuess === secret) {
           console.log('Winner!');
           editableWins++;
+          $('#words-guessed').text('');
           changeWord();
         }
 
